@@ -5,8 +5,17 @@ class Chisel
     @markdown_text = File.readlines(input_file)
   end
 
-  def break_into_lines
-    markdown_text
-
+  def header_to_html
+    markdown_text.each do |line|
+      if line.start_with?("#")
+        pound = line.count "#"
+        front = line.index(" ")
+        header_text = line[(front + 1)..-2]
+        @headers = "<h#{pound}>#{header_text}</h#{pound}>"
+      end
+    end
+    @headers
   end
 end
+# chisel = Chisel.new("./lib/my_input.markdown")
+# chisel.header_to_html
