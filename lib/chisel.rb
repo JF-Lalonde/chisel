@@ -3,6 +3,7 @@ class Chisel
 
   def initialize(input_file)
     @markdown_text = File.readlines(input_file)
+    #Add methods here
   end
 
   def header_to_html
@@ -25,6 +26,22 @@ class Chisel
     end
     @paragraphs
   end
+
+  def emphasis_to_html
+    markdown_text.each do |line|
+      if line.include?"*"
+        @emphasis = line.gsub("*", "<em>")
+      end
+    end
+    @emphasis
+  end
+
+  def strong_to_html
+    markdown_text.each do |line|
+      if line.include?"**"
+        @strong = line.gsub("**", "<strong>")
+      end
+    end
+    @strong
+  end
 end
-# chisel = Chisel.new("./lib/my_input.markdown")
-# chisel.header_to_html

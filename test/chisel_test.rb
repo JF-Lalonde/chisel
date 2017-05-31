@@ -29,7 +29,23 @@ class ChiselTest < Minitest::Test
     chisel = Chisel.new("./lib/my_input.markdown")
     actual = chisel.paragraph_to_html
     expected = "<p>**Food & Wine** this place has been packed every night.\"</p>"
+
     assert_equal expected, actual
   end
 
+  def test_chisel_converts_emphasis
+    chisel = Chisel.new("./lib/my_input.markdown")
+    actual = chisel.emphasis_to_html
+    expected = '"You just <em>have</em> to try the cheesecake," he said. "Ever since it appeared in'
+
+    assert_equal expected, actual
+  end
+
+  def test_chisel_converts_strong
+    chisel = Chisel.new("./lib/my_input.markdown")
+    actual = chisel.strong_to_html
+    expected = "<strong>Food & Wine</strong> this place has been packed every night."
+
+    assert_equal expected, actual
+  end
 end
