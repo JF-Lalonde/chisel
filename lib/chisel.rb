@@ -16,6 +16,15 @@ class Chisel
     end
     @headers
   end
+
+  def paragraph_to_html
+    markdown_text.each do |line|
+      if !line.start_with?("#") && line != "\n"
+        @paragraphs = "<p>#{line.chomp}</p>"
+      end
+    end
+    @paragraphs
+  end
 end
 # chisel = Chisel.new("./lib/my_input.markdown")
 # chisel.header_to_html

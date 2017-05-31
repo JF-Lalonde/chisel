@@ -25,5 +25,11 @@ class ChiselTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_chisel_converts_paragraphs
+    chisel = Chisel.new("./lib/my_input.markdown")
+    actual = chisel.paragraph_to_html
+    expected = "<p>**Food & Wine** this place has been packed every night.\"</p>"
+    assert_equal expected, actual
+  end
 
 end
